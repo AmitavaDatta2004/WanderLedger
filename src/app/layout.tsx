@@ -11,8 +11,8 @@ const inter = Inter({ // Changed from Open_Sans
 });
 
 export const metadata: Metadata = {
-  title: 'WanderLedger - Collaborative Travel Planning',
-  description: 'Effortlessly manage trip finances, itineraries, and packing lists with your group.',
+  title: '💸✨ WanderLedger: The Ultimate Multi-User Travel Expense Tracker 🌍🧳',
+  description: 'WanderLedger is a modern, secure, and intuitive web app for managing group travel expenses. No more messy spreadsheets or awkward money talk — just seamless, transparent, and fair expense sharing! 💚',
   icons: {
     icon: '/favicon.ico', // Basic favicon, can be improved later
   }
