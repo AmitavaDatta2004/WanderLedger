@@ -28,6 +28,7 @@ export default function RootLayout({
       <body className="bg-background text-foreground font-sans"> {/* Added font-sans */}
         <AppProviders>
           {children}
+          <Analytics />
         </AppProviders>
       </body>
     </html>
