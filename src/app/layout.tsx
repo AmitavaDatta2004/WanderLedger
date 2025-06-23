@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google'; // Changed from Open_Sans
 import './globals.css';
 import { AppProviders } from '@/components/providers/app-providers';
+import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({ // Changed from Open_Sans
   subsets: ['latin'],
