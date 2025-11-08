@@ -28,7 +28,10 @@ export function AppProviders({ children }: { children: ReactNode }) {
                 <span className="font-semibold text-sm">WanderLedger</span>
               </div>
               <p className="text-sm text-muted-foreground">
-                © {new Date().getFullYear()} WanderLedger. Adventure Awaits.
+               © {new Date().getFullYear()} WanderLedger. Adventure Awaits.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Developed with ❤️ by Amitava Datta and Pranay De
               </p>
               <div className="flex gap-4 text-sm">
                 <Link href="/privacy" className="text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link>
