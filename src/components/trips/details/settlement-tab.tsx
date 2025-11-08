@@ -53,12 +53,14 @@ export default function SettlementTab({ trip, expenses, members, recordedPayment
 
     if (expenses) {
       expenses.forEach(expense => {
+        // Safely handle expenses paid by users no longer in the trip
         if (financials[expense.paidBy]) {
           financials[expense.paidBy].paid += expense.amount;
         }
         
         if (expense.splitType === 'unequally' && expense.splitDetails) {
           Object.entries(expense.splitDetails).forEach(([participantId, shareAmount]) => {
+            // Only attribute shares to current members
             if (financials[participantId] && expense.participants.includes(participantId)) {
               financials[participantId].share += shareAmount;
             }
@@ -66,6 +68,7 @@ export default function SettlementTab({ trip, expenses, members, recordedPayment
         } else { // Default to equal split
           const sharePerParticipant = expense.amount / (expense.participants.length || 1);
           expense.participants.forEach(participantId => {
+            // Only attribute shares to current members
             if (financials[participantId]) {
               financials[participantId].share += sharePerParticipant;
             }

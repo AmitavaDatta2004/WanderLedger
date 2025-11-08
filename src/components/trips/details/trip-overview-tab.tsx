@@ -30,7 +30,7 @@ export default function TripOverviewTab({ trip, expenses, members, currentUser, 
     currentUserTotalReceivedFromSettlements,
     currentUserNetBalance,
   } = useMemo(() => {
-    if (!currentUser || !expenses) {
+    if (!currentUser || !expenses || !members) {
       return {
         currentUserTotalPaidInitial: 0,
         currentUserTotalShare: 0,
@@ -44,13 +44,15 @@ export default function TripOverviewTab({ trip, expenses, members, currentUser, 
     let shareForCurrentUser = 0;
 
     expenses.forEach(exp => {
-      if (exp.paidBy === currentUser.uid) {
+      // Only include expenses paid by current members in the user's personal calculation
+      if (exp.paidBy === currentUser.uid && members.some(m => m.id === exp.paidBy)) {
         paidByCurrentUserInitial += exp.amount;
       }
+      
       if (exp.participants.includes(currentUser.uid)) {
-        if (exp.splitType === 'unequally' && exp.splitDetails && exp.splitDetails[currentUser.uid]) {
+        if (exp.splitType === 'unequally' && exp.splitDetails && exp.splitDetails[currentUser.uid] !== undefined) {
             shareForCurrentUser += exp.splitDetails[currentUser.uid];
-        } else {
+        } else if (exp.splitType !== 'unequally') {
             const numberOfParticipants = exp.participants.length || 1;
             shareForCurrentUser += exp.amount / numberOfParticipants;
         }
@@ -80,7 +82,7 @@ export default function TripOverviewTab({ trip, expenses, members, currentUser, 
       currentUserTotalReceivedFromSettlements: receivedFromSettlements,
       currentUserNetBalance: finalNetBalance,
     };
-  }, [currentUser, expenses, recordedPayments]);
+  }, [currentUser, expenses, recordedPayments, members]);
 
   const getMemberName = useCallback((uid: string) => members?.find(m => m.id === uid)?.displayName || uid.substring(0, 6) + "...", [members]);
 
@@ -111,7 +113,10 @@ export default function TripOverviewTab({ trip, expenses, members, currentUser, 
   const memberSpendingData = useMemo(() => {
     if (!expenses || expenses.length === 0 || !members || members.length === 0) return [];
     const spending = expenses.reduce((acc, curr) => {
-      acc[curr.paidBy] = (acc[curr.paidBy] || 0) + curr.amount;
+      // Only count spending from current members
+      if (members.some(m => m.id === curr.paidBy)) {
+        acc[curr.paidBy] = (acc[curr.paidBy] || 0) + curr.amount;
+      }
       return acc;
     }, {} as Record<string, number>);
     return Object.entries(spending).map(([memberId, amount]) => ({
@@ -174,8 +179,8 @@ export default function TripOverviewTab({ trip, expenses, members, currentUser, 
         <CardHeader>
           <CardTitle className="text-2xl">Your Financial Snapshot</CardTitle>
           <CardDescription>
-            Detailed breakdown of your contributions, shares, and settlements.
-            The "Current Net Position" reflects your final balance after all recorded payments.
+            Detailed breakdown of your contributions, shares, and settlements. The "Current Net Position" reflects your final balance after all recorded
+            payments.
           </CardDescription>
         </CardHeader>
         <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">

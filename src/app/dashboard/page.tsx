@@ -44,7 +44,7 @@ async function fetchUserTrips(userId: string | undefined | null): Promise<Trip[]
         destination: data.destination,
         startDate: (data.startDate as Timestamp).toDate(),
         endDate: (data.endDate as Timestamp).toDate(),
-        coverPhotoURL: data.coverPhotoURL || 'https://placehold.co/600x400.png',
+        coverPhotoURL: data.coverPhotoURL || 'https://images.unsplash.com/photo-1528543606781-2f6e6857f318?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         dataAiHint: data.dataAiHint || `${data.destination?.split(',')[0].trim().toLowerCase() || 'trip'} photo`,
       } as Trip;
     });
