@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google'; // Changed from Open_Sans
 import './globals.css';
 import { AppProviders } from '@/components/providers/app-providers';
-import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({ // Changed from Open_Sans
   subsets: ['latin'],
@@ -11,11 +10,14 @@ const inter = Inter({ // Changed from Open_Sans
 });
 
 export const metadata: Metadata = {
-  title: '💸✨ WanderLedger: The Ultimate Multi-User Travel Expense Tracker 🌍🧳',
-  description: 'WanderLedger is a modern, secure, and intuitive web app for managing group travel expenses. No more messy spreadsheets or awkward money talk — just seamless, transparent, and fair expense sharing! 💚',
+  title: 'WanderLedger - Collaborative Travel Planning',
+  description: 'Effortlessly manage trip finances, itineraries, and packing lists with your group.',
+  manifest: '/manifest.json',
   icons: {
     icon: '/favicon.ico', // Basic favicon, can be improved later
-  }
+    apple: '/icons/apple-touch-icon.png',
+  },
+  themeColor: '#5F55F6',
 };
 
 export default function RootLayout({
@@ -28,7 +30,6 @@ export default function RootLayout({
       <body className="bg-background text-foreground font-sans"> {/* Added font-sans */}
         <AppProviders>
           {children}
-          <Analytics />
         </AppProviders>
       </body>
     </html>
