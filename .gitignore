@@ -39,3 +39,20 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+# Android signing keys
+*.keystore
+*.jks
+*.p12
+*.key
+*.der
+
+# Android / Bubblewrap builds
+/android/app/build/
+/android/build/
+ /android/.gradle/
+ /app/build/
+ /app/release/
+ /app/debug/
+ /keys/
