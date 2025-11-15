@@ -1,0 +1,10 @@
+Keep this file and signing.keystore in a safe place. You'll need these files if you want to upload future versions of your PWA to the Google Play Store.
+
+Key store file: signing.keystore
+Key store password: shwTRdNcSSws
+Key alias: my-key-alias
+Key password: shwTRdNcSSws
+Signer's full name: WanderLedger Admin
+Signer's organization: WanderLedger
+Signer's organizational unit: Engineering
+Signer's country code: IN

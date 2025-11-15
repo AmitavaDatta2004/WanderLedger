@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "app.vercel.wanderledger.twa",
+        "sha256_cert_fingerprints": ["94:35:0C:96:85:43:98:AA:41:18:3A:AE:46:DB:60:95:25:E1:79:BF:F2:CA:1E:DD:D4:9C:99:2F:F4:16:B2:B1"]
+      }
+    }]
