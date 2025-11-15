@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.wanderledger.app",
+      "sha256_cert_fingerprints": [
+        "34:21:13:72:BD:B9:BF:24:38:C7:C5:15:AB:25:88:09:3B:1C:14:DF:C8:6C:4D:33:57:03:C0:5A:15:F1:E4:4C"
+      ]
+    }
+  }
+]
